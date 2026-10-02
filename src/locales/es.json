@@ -171,5 +171,26 @@
         "organization": "Organización"
       }
     }
+  },
+  "imageUploader": {
+    "uploadTab": "Subir archivo",
+    "urlTab": "URL",
+    "dropzone": "Área de carga de imagen",
+    "uploading": "Subiendo imagen…",
+    "dropHint": "Arrastrá una imagen o <1>buscá en tu equipo</1>",
+    "limits": "JPG, PNG o WEBP · máx. 5 MB",
+    "apply": "Aplicar",
+    "noImage": "Sin imagen: se usará el color de portada seleccionado.",
+    "previewAlt": "Portada del artículo",
+    "remove": "Eliminar imagen",
+    "errors": {
+      "type": "Formato no soportado. Usá una imagen JPG, PNG o WEBP.",
+      "size": "La imagen pesa más de 5 MB. Comprimila o elegí otra.",
+      "upload": "No se pudo subir la imagen. Intentá de nuevo o pegá una URL.",
+      "notConfigured": "La subida de imágenes no está disponible en el servidor. Pegá una URL de imagen.",
+      "forbidden": "No tenés permiso para subir imágenes. Pegá una URL de imagen.",
+      "url": "Ingresá una URL válida que empiece con https://",
+      "load": "La imagen no se pudo cargar."
+    }
   }
 }

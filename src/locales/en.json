@@ -171,5 +171,26 @@
         "organization": "Organization"
       }
     }
+  },
+  "imageUploader": {
+    "uploadTab": "Upload file",
+    "urlTab": "URL",
+    "dropzone": "Image upload area",
+    "uploading": "Uploading image…",
+    "dropHint": "Drag an image here or <1>browse your files</1>",
+    "limits": "JPG, PNG or WEBP · max. 5 MB",
+    "apply": "Apply",
+    "noImage": "No image: the selected cover color will be used.",
+    "previewAlt": "Article cover",
+    "remove": "Remove image",
+    "errors": {
+      "type": "Unsupported format. Use a JPG, PNG or WEBP image.",
+      "size": "The image is larger than 5 MB. Compress it or pick another one.",
+      "upload": "Couldn't upload the image. Try again or paste a URL.",
+      "notConfigured": "Image uploads aren't available on the server. Paste an image URL instead.",
+      "forbidden": "You don't have permission to upload images. Paste an image URL instead.",
+      "url": "Enter a valid URL starting with https://",
+      "load": "The image couldn't be loaded."
+    }
   }
 }
