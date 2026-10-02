@@ -192,5 +192,11 @@
       "url": "Enter a valid URL starting with https://",
       "load": "The image couldn't be loaded."
     }
+  },
+  "votes": {
+    "groupLabel": "Was this article helpful?",
+    "prompt": "Was this helpful?",
+    "up": "Yes, it was helpful",
+    "down": "No, it wasn't helpful"
   }
 }

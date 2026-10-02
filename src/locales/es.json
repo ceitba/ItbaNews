@@ -192,5 +192,11 @@
       "url": "Ingresá una URL válida que empiece con https://",
       "load": "La imagen no se pudo cargar."
     }
+  },
+  "votes": {
+    "groupLabel": "¿Te resultó útil este artículo?",
+    "prompt": "¿Te resultó útil?",
+    "up": "Sí, me resultó útil",
+    "down": "No me resultó útil"
   }
 }
