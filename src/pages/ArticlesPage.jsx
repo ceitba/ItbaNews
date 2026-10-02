@@ -11,7 +11,7 @@ import { useAuthSession } from '../hooks/useAuthSession'
 import { canAccessAdmin } from '../store/authStore'
 import { CONTRIBUTIONS_ENABLED } from '../config/features'
 
-function useFetchArticles(category) {
+function useFetchArticles(category, reloadKey) {
   const [state, setState] = useState({ status: 'loading', data: [] })
 
   useEffect(() => {
@@ -27,7 +27,7 @@ function useFetchArticles(category) {
       })
 
     return () => { cancelled = true }
-  }, [category])
+  }, [category, reloadKey])
 
   return state
 }
@@ -36,7 +36,8 @@ export default function ArticlesPage() {
   const { t } = useTranslation()
   // null = all categories (no filter param)
   const [activeCategory, setActiveCategory] = useState(null)
-  const { status, data: articles } = useFetchArticles(activeCategory)
+  const [reloadKey, setReloadKey] = useState(0)
+  const { status, data: articles } = useFetchArticles(activeCategory, reloadKey)
 
   const featured  = articles.find((a) => a.featured)
   const secondary = articles.filter((a) => !a.featured)
@@ -62,7 +63,7 @@ export default function ArticlesPage() {
         <div className="mt-8">
           {status === 'loading' && <LoadingState />}
           {status === 'error'   && (
-            <ErrorState onRetry={() => setActiveCategory(activeCategory)} />
+            <ErrorState onRetry={() => setReloadKey((k) => k + 1)} />
           )}
           {status === 'success' && articles.length === 0 && (
             <EmptyState category={activeCategory} />
