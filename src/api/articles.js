@@ -1,4 +1,4 @@
-import { apiRequest, ApiError } from './client'
+import { apiGet, apiSend } from './client'
 
 function normalize(a) {
   if (!a) return a
@@ -11,36 +11,25 @@ export async function fetchArticles({ category, organization, status, page = 1, 
   if (organization) params.set('organization', organization)
   if (status) params.set('status', status)
 
-  const res = await apiRequest('GET', `/articles?${params}`)
-  if (!res || !res.ok) throw new ApiError('Failed to fetch articles', res?.status)
-  const json = await res.json()
+  const json = await apiGet(`/articles?${params}`)
   return { ...json, data: json.data.map(normalize) }
 }
 
 export async function fetchArticleById(id) {
-  const res = await apiRequest('GET', `/articles/${id}`)
-  if (!res) throw new ApiError('Request failed', 0)
-  if (res.status === 404) throw new ApiError(`Article "${id}" not found`, 404, 'NOT_FOUND')
-  if (!res.ok) throw new ApiError('Failed to fetch article', res.status)
-  return normalize(await res.json())
+  return normalize(await apiGet(`/articles/${encodeURIComponent(id)}`))
 }
 
 export async function createArticle(data) {
   const { date, ...rest } = data
-  const res = await apiRequest('POST', '/articles', { ...rest, publishedAt: date })
-  if (!res || !res.ok) throw new ApiError('Failed to create article', res?.status)
-  return normalize(await res.json())
+  return normalize(await apiSend('POST', '/articles', { ...rest, publishedAt: date }))
 }
 
 export async function updateArticle(id, data) {
   const payload = { ...data }
   if (payload.date) { payload.publishedAt = payload.date; delete payload.date }
-  const res = await apiRequest('PATCH', `/articles/${id}`, payload)
-  if (!res || !res.ok) throw new ApiError('Failed to update article', res?.status)
-  return normalize(await res.json())
+  return normalize(await apiSend('PATCH', `/articles/${encodeURIComponent(id)}`, payload))
 }
 
 export async function deleteArticle(id) {
-  const res = await apiRequest('DELETE', `/articles/${id}`)
-  if (res && !res.ok && res.status !== 204) throw new ApiError('Failed to delete article', res.status)
+  await apiSend('DELETE', `/articles/${encodeURIComponent(id)}`)
 }
