@@ -75,13 +75,14 @@
     }
   },
   "categories": {
-    "Todos": "All",
     "Académico": "Academic",
     "Campus": "Campus",
     "Cultura": "Culture",
     "Tecnología": "Tech",
     "Deportes": "Sports",
-    "General": "General"
+    "General": "General",
+    "all": "All",
+    "Organizaciones": "Organizations"
   },
   "common": {
     "loading": "Loading…",

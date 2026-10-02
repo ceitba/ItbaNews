@@ -75,13 +75,14 @@
     }
   },
   "categories": {
-    "Todos": "Todos",
     "Académico": "Académico",
     "Campus": "Campus",
     "Cultura": "Cultura",
     "Tecnología": "Tecnología",
     "Deportes": "Deportes",
-    "General": "General"
+    "General": "General",
+    "all": "Todos",
+    "Organizaciones": "Organizaciones"
   },
   "common": {
     "loading": "Cargando…",

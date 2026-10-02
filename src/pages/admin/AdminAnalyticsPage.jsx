@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from 'react'
 import { fetchAnalyticsSummary } from '../../api/analytics'
+import { useCategoryLabel } from '../../components/CategoryBadge'
 import { addDaysISO, todayISO } from '../../utils/dates'
 
 const RANGES = [
@@ -21,6 +22,7 @@ export default function AdminAnalyticsPage() {
   const [days, setDays]       = useState(30)
   const [summary, setSummary] = useState(EMPTY_SUMMARY)
   const [status, setStatus]   = useState('loading')
+  const categoryLabel = useCategoryLabel()
 
   useEffect(() => {
     let cancelled = false
@@ -49,8 +51,8 @@ export default function AdminAnalyticsPage() {
   }, [summary])
 
   const catData = useMemo(
-    () => summary.categoryViews.map(({ category, views }) => ({ label: category, value: views })),
-    [summary.categoryViews],
+    () => summary.categoryViews.map(({ category, views }) => ({ label: categoryLabel(category), value: views })),
+    [summary.categoryViews, categoryLabel],
   )
 
   const sparkData = useMemo(() => {

@@ -3,9 +3,10 @@ import { useParams, useNavigate, Link } from 'react-router-dom'
 import { fetchEventById, createEvent, updateEvent } from '../../api/events'
 import { fetchOrganizations } from '../../api/organizations'
 import { getOrganizations, isStaff } from '../../store/authStore'
+import { DEFAULT_CATEGORY, categoryOptions, normalizeCategory } from '../../constants/categories'
+import { useCategoryLabel } from '../../components/CategoryBadge'
 import { todayISO } from '../../utils/dates'
 
-const EVENT_CATEGORIES = ['ACADÉMICO', 'DEPORTES', 'CULTURA', 'ORGANIZACIONES']
 
 function buildEmptyForm() {
   const myOrgs = getOrganizations()
@@ -15,7 +16,7 @@ function buildEmptyForm() {
     time:         '09:00',
     endTime:      '10:00',
     location:     '',
-    category:     'Académico',
+    category:     DEFAULT_CATEGORY,
     organization: myOrgs[0]?.slug ?? 'ceitba',
     description:  '',
   }
@@ -25,6 +26,7 @@ export default function AdminEventFormPage() {
   const { id }   = useParams()
   const navigate = useNavigate()
   const isEdit   = Boolean(id)
+  const categoryLabel = useCategoryLabel()
 
   const [form, setForm]         = useState(buildEmptyForm)
   const [orgs, setOrgs]         = useState([])
@@ -43,7 +45,11 @@ export default function AdminEventFormPage() {
   useEffect(() => {
     if (!isEdit) return
     fetchEventById(id)
-      .then((existing) => setForm({ ...buildEmptyForm(), ...existing }))
+      .then((existing) => setForm({
+        ...buildEmptyForm(),
+        ...existing,
+        category: normalizeCategory(existing.category) || DEFAULT_CATEGORY,
+      }))
       .catch(() => {})
   }, [id, isEdit])
 
@@ -141,7 +147,7 @@ export default function AdminEventFormPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Field label="Categoría">
             <select value={form.category} onChange={(e) => set('category', e.target.value)} className={inputClass(null)}>
-              {EVENT_CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
+              {categoryOptions(form.category).map((c) => <option key={c} value={c}>{categoryLabel(c)}</option>)}
             </select>
           </Field>
           <Field label="Organización">

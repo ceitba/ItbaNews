@@ -10,7 +10,7 @@ import { fetchOrganizations } from '../../api/organizations'
 import ImageUploader from '../../components/ImageUploader'
 import { todayISO } from '../../utils/dates'
 
-const CATEGORIES = ['ACADÉMICO', 'DEPORTES', 'CULTURA', 'ORGANIZACIONES']
+import { CATEGORIES, DEFAULT_CATEGORY } from '../../constants/categories'
 
 const COLOR_OPTIONS = [
   { value: 'blue',   label: 'Azul',    cls: 'bg-primary-500' },
@@ -23,7 +23,7 @@ const EMPTY_FORM = {
   title:        '',
   excerpt:      '',
   body:         [''],
-  category:     'Académico',
+  category:     DEFAULT_CATEGORY,
   organization: 'ceitba',
   date:         todayISO(),
   readingTime:  '',

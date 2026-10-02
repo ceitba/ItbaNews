@@ -5,7 +5,8 @@ import ArticleCard from '../components/ArticleCard'
 import SkeletonCard from '../components/SkeletonCard'
 import ContributeModal from '../components/ContributeModal'
 import { fetchArticles } from '../api/articles'
-import { CATEGORIES } from '../data/articles'
+import { CATEGORIES } from '../constants/categories'
+import { useCategoryLabel } from '../components/CategoryBadge'
 import { useAuthSession } from '../hooks/useAuthSession'
 import { canAccessAdmin } from '../store/authStore'
 import { CONTRIBUTIONS_ENABLED } from '../config/features'
@@ -33,7 +34,8 @@ function useFetchArticles(category) {
 
 export default function ArticlesPage() {
   const { t } = useTranslation()
-  const [activeCategory, setActiveCategory] = useState('Todos')
+  // null = all categories (no filter param)
+  const [activeCategory, setActiveCategory] = useState(null)
   const { status, data: articles } = useFetchArticles(activeCategory)
 
   const featured  = articles.find((a) => a.featured)
@@ -78,11 +80,12 @@ export default function ArticlesPage() {
 
 function FilterBar({ categories, active, onChange }) {
   const { t } = useTranslation()
+  const label = useCategoryLabel()
   return (
     <nav aria-label={t('articles.filter.label')}>
       <ul className="flex flex-wrap gap-2 list-none m-0 p-0" role="list">
-        {categories.map((cat) => (
-          <li key={cat}>
+        {[null, ...categories].map((cat) => (
+          <li key={cat ?? 'all'}>
             <button
               type="button"
               onClick={() => onChange(cat)}
@@ -94,7 +97,7 @@ function FilterBar({ categories, active, onChange }) {
                   : 'bg-white border border-border text-ink-secondary hover:border-primary hover:text-primary',
               ].join(' ')}
             >
-              {t(`categories.${cat}`, { defaultValue: cat })}
+              {cat ? label(cat) : t('categories.all')}
             </button>
           </li>
         ))}
@@ -214,6 +217,7 @@ function ContributeBanner() {
 
 function EmptyState({ category }) {
   const { t } = useTranslation()
+  const label = useCategoryLabel()
   return (
     <div className="flex flex-col items-center justify-center py-24 gap-6 text-center animate-fade-in">
       <div className="relative w-24 h-24">
@@ -223,7 +227,7 @@ function EmptyState({ category }) {
       </div>
       <div>
         <p className="font-display text-h4 font-bold text-ink-primary">
-          {t('articles.empty.title', { category })}
+          {t('articles.empty.title', { category: category ? label(category) : t('categories.all') })}
         </p>
         <p className="font-body text-body text-ink-secondary mt-1">
           {t('articles.empty.message')}

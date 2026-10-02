@@ -7,7 +7,7 @@ function normalize(a) {
 
 export async function fetchArticles({ category, organization, status, page = 1, limit = 20 } = {}) {
   const params = new URLSearchParams({ page, limit })
-  if (category && category !== 'Todos') params.set('category', category)
+  if (category) params.set('category', category)
   if (organization) params.set('organization', organization)
   if (status) params.set('status', status)
 

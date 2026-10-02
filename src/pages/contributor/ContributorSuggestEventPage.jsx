@@ -5,7 +5,7 @@ import { getEventById, submitEventSuggestion, resubmitEventSuggestion } from '..
 import { fetchOrganizations } from '../../api/organizations'
 import { todayISO } from '../../utils/dates'
 
-const EVENT_CATEGORIES = ['ACADÉMICO', 'DEPORTES', 'CULTURA', 'ORGANIZACIONES']
+import { CATEGORIES as EVENT_CATEGORIES, DEFAULT_CATEGORY } from '../../constants/categories'
 
 const EMPTY_FORM = {
   title:        '',
@@ -13,7 +13,7 @@ const EMPTY_FORM = {
   time:         '09:00',
   endTime:      '10:00',
   location:     '',
-  category:     'Académico',
+  category:     DEFAULT_CATEGORY,
   organization: 'ceitba',
   description:  '',
 }

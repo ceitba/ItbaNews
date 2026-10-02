@@ -7,7 +7,8 @@ import {
 } from '../../api/articles'
 import { fetchOrganizations } from '../../api/organizations'
 import { getOrganizations, isStaff } from '../../store/authStore'
-import { CATEGORIES } from '../../data/articles'
+import { DEFAULT_CATEGORY, categoryOptions, normalizeCategory } from '../../constants/categories'
+import { useCategoryLabel } from '../../components/CategoryBadge'
 import ImageUploader from '../../components/ImageUploader'
 import ArticleLivePreview from '../../components/admin/ArticleLivePreview'
 import { todayISO } from '../../utils/dates'
@@ -25,7 +26,7 @@ function buildEmptyForm() {
     title:        '',
     excerpt:      '',
     body:         [''],
-    category:     'Académico',
+    category:     DEFAULT_CATEGORY,
     organization: myOrgs[0]?.slug ?? 'ceitba',
     authors:      [''],
     date:         todayISO(),
@@ -41,6 +42,7 @@ export default function AdminArticleFormPage() {
   const { id } = useParams()
   const navigate = useNavigate()
   const isEdit = Boolean(id)
+  const categoryLabel = useCategoryLabel()
 
   const [form, setForm]         = useState(buildEmptyForm)
   const [orgs, setOrgs]         = useState([])
@@ -64,6 +66,7 @@ export default function AdminArticleFormPage() {
         setForm({
           ...buildEmptyForm(),
           ...existing,
+          category: normalizeCategory(existing.category) || DEFAULT_CATEGORY,
           body: Array.isArray(existing.body) && existing.body.length
             ? existing.body
             : [existing.excerpt ?? ''],
@@ -202,7 +205,7 @@ export default function AdminArticleFormPage() {
 
         <SidebarCard title="Categoría">
           <select value={form.category} onChange={(e) => set('category', e.target.value)} className={selectClass()}>
-            {CATEGORIES.filter((c) => c !== 'TODOS').map((c) => <option key={c} value={c}>{c}</option>)}
+            {categoryOptions(form.category).map((c) => <option key={c} value={c}>{categoryLabel(c)}</option>)}
           </select>
         </SidebarCard>
 
