@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import { getSession } from '../../store/authStore'
+import { canAccessAdmin, getSession } from '../../store/authStore'
 
 // The API now sets the HttpOnly session cookie before redirecting back here
 // (no token in the URL). We just refresh the profile and route based on role.
@@ -19,11 +19,7 @@ export default function AdminCallbackPage() {
         navigate('/admin/login', { replace: true })
         return
       }
-      const adminRoles = ['staff', 'admin', 'editor']
-      const hasAccess =
-        adminRoles.includes(profile.role) ||
-        (profile.organizations && profile.organizations.length > 0)
-      navigate(hasAccess ? '/admin/articles' : '/contribute', { replace: true })
+      navigate(canAccessAdmin(profile) ? '/admin/articles' : '/contribute', { replace: true })
     })
   }, [navigate, params])
 

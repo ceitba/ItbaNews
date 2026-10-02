@@ -87,5 +87,27 @@
     "loading": "Cargando…",
     "backHome": "Volver al inicio",
     "notFound": "Página no encontrada"
+  },
+  "auth": {
+    "signIn": "Iniciar sesión",
+    "signOut": "Cerrar sesión",
+    "myProfile": "Mi perfil",
+    "adminPanel": "Panel admin",
+    "contribute": "Contribuir",
+    "accountMenu": "Menú de cuenta",
+    "verifying": "Verificando sesión…",
+    "errorTitle": "No pudimos iniciar sesión",
+    "tryAgain": "Intentar de nuevo",
+    "back": "Volver",
+    "adminSubtitle": "Panel de Administración",
+    "googleButton": "Ingresar con Google (ITBA)",
+    "requiresAccount": "Requiere cuenta <1>@itba.edu.ar</1>",
+    "errors": {
+      "unauthorized": "Solo cuentas @itba.edu.ar pueden iniciar sesión.",
+      "unauthorized_workspace": "Solo cuentas del workspace ITBA pueden iniciar sesión.",
+      "unverified_email": "Tu correo de Google aún no está verificado.",
+      "invalid_state": "La sesión de inicio expiró o no es válida. Probá de nuevo.",
+      "auth_failed": "No pudimos completar el inicio de sesión. Probá de nuevo."
+    }
   }
 }

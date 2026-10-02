@@ -87,5 +87,27 @@
     "loading": "Loading…",
     "backHome": "Back to home",
     "notFound": "Page not found"
+  },
+  "auth": {
+    "signIn": "Sign in",
+    "signOut": "Sign out",
+    "myProfile": "My profile",
+    "adminPanel": "Admin panel",
+    "contribute": "Contribute",
+    "accountMenu": "Account menu",
+    "verifying": "Verifying session…",
+    "errorTitle": "We couldn't sign you in",
+    "tryAgain": "Try again",
+    "back": "Go back",
+    "adminSubtitle": "Admin Panel",
+    "googleButton": "Sign in with Google (ITBA)",
+    "requiresAccount": "Requires an <1>@itba.edu.ar</1> account",
+    "errors": {
+      "unauthorized": "Only @itba.edu.ar accounts can sign in.",
+      "unauthorized_workspace": "Only ITBA workspace accounts can sign in.",
+      "unverified_email": "Your Google email is not verified yet.",
+      "invalid_state": "The sign-in session expired or is invalid. Please try again.",
+      "auth_failed": "We couldn't complete the sign-in. Please try again."
+    }
   }
 }

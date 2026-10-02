@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
-import { getContributorSession } from '../../store/contributorAuthStore'
+import { getCachedSession } from '../../store/authStore'
 import { getEventById, submitEventSuggestion, resubmitEventSuggestion } from '../../store/eventStore'
 import { fetchOrganizations } from '../../api/organizations'
 
@@ -20,7 +20,7 @@ const EMPTY_FORM = {
 export default function ContributorSuggestEventPage() {
   const { id }   = useParams()
   const navigate = useNavigate()
-  const session  = getContributorSession()
+  const session  = getCachedSession()
   const isEdit   = Boolean(id)
 
   const [form, setForm]       = useState(EMPTY_FORM)

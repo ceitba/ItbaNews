@@ -7,8 +7,7 @@ import ContributeModal from '../components/ContributeModal'
 import { fetchArticles } from '../api/articles'
 import { CATEGORIES } from '../data/articles'
 import { useAuthSession } from '../hooks/useAuthSession'
-
-const ADMIN_ROLES = ['staff', 'admin', 'editor']
+import { canAccessAdmin } from '../store/authStore'
 
 function useFetchArticles(category) {
   const [state, setState] = useState({ status: 'loading', data: [] })
@@ -161,7 +160,7 @@ function ContributeBanner() {
   // the banner is a non-critical accent, render nothing until we know.
   if (loading) return null
 
-  const isAdmin = profile && ADMIN_ROLES.includes(profile.role)
+  const isAdmin = canAccessAdmin(profile)
   const ctaTo = isAdmin ? '/admin/articles' : '/contribute'
   const ctaLabel = isAdmin ? 'Panel admin' : 'Contribuir'
   const copyBody = profile

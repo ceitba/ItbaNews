@@ -1,13 +1,14 @@
 import { useState, useEffect, useRef } from 'react'
 import { Outlet, NavLink, Link, useNavigate, useLocation } from 'react-router-dom'
-import { signOut, getSession } from '../store/authStore'
+import { signOut, getOrganizations, isStaff as isStaffProfile } from '../store/authStore'
+import { useAuthSession } from '../hooks/useAuthSession'
 import { getPendingArticleSuggestionsCount } from '../store/articleStore'
 import { getPendingEventSuggestionsCount } from '../store/eventStore'
 
 function buildNav(profile) {
-  const orgs = profile?.organizations ?? []
-  const adminRole = ['staff', 'admin', 'editor'].includes(profile?.role)
-  const isStaff = profile?.role === 'staff'
+  const orgs = getOrganizations(profile)
+  // Suggestions review and analytics are STAFF-only on the API.
+  const isStaff = isStaffProfile(profile)
 
   const groups = []
   groups.push({
@@ -15,7 +16,7 @@ function buildNav(profile) {
     items: [
       { to: '/admin/articles', label: 'Artículos', icon: <IconDoc /> },
       { to: '/admin/events',   label: 'Eventos',   icon: <IconCal /> },
-      ...(adminRole
+      ...(isStaff
         ? [{ to: '/admin/suggestions', label: 'Sugerencias', icon: <IconInbox /> }]
         : []),
     ],
@@ -30,7 +31,7 @@ function buildNav(profile) {
       })),
     })
   }
-  if (adminRole) {
+  if (isStaff) {
     groups.push({
       label: 'Medios',
       items: [
@@ -51,12 +52,10 @@ function buildNav(profile) {
 
 export default function AdminLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  const [session, setSession] = useState(null)
+  const { profile: session } = useAuthSession()
   const navigate = useNavigate()
   const location = useLocation()
   const drawerRef = useRef(null)
-
-  useEffect(() => { getSession().then(setSession) }, [])
 
   // Close drawer on navigation
   useEffect(() => { setSidebarOpen(false) }, [location.pathname])
@@ -72,9 +71,9 @@ export default function AdminLayout() {
     return () => { document.body.style.overflow = '' }
   }, [sidebarOpen])
 
-  function handleSignOut() {
-    signOut()
-    navigate('/admin/login')
+  async function handleSignOut() {
+    await signOut()
+    navigate('/admin/login', { replace: true })
   }
 
   const pendingSuggestions = getPendingArticleSuggestionsCount() + getPendingEventSuggestionsCount()
