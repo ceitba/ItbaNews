@@ -109,5 +109,10 @@
       "invalid_state": "The sign-in session expired or is invalid. Please try again.",
       "auth_failed": "We couldn't complete the sign-in. Please try again."
     }
+  },
+  "calendar": {
+    "prevMonth": "Previous month",
+    "nextMonth": "Next month",
+    "dayWithEvents": "{{date}}, has events"
   }
 }

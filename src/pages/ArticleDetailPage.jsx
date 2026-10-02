@@ -6,6 +6,7 @@ import ArticleCard from '../components/ArticleCard'
 import VoteButtons from '../components/VoteButtons'
 import { fetchArticleById, fetchArticles } from '../api/articles'
 import { trackEvent } from '../store/analyticsStore'
+import { formatDate as formatLocalDate } from '../utils/dates'
 
 const GEO_BG = {
   blue:   'bg-primary-500',
@@ -15,9 +16,7 @@ const GEO_BG = {
 }
 
 function formatDate(iso, lang) {
-  return new Date(iso).toLocaleDateString(lang === 'en' ? 'en-US' : 'es-AR', {
-    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
-  })
+  return formatLocalDate(iso, lang, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
 }
 
 export default function ArticleDetailPage() {

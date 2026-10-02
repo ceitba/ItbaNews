@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { fetchEvents, deleteEvent } from '../../api/events'
 import CategoryBadge from '../../components/CategoryBadge'
+import { formatDate, todayISO } from '../../utils/dates'
 
 export default function AdminEventsPage() {
+  const { i18n } = useTranslation()
   const [events, setEvents]     = useState([])
   const [status, setStatus]     = useState('loading')
   const [confirmId, setConfirmId] = useState(null)
@@ -45,7 +48,7 @@ export default function AdminEventsPage() {
   }
 
   const sorted = [...events].sort((a, b) => a.date.localeCompare(b.date))
-  const today  = new Date().toISOString().slice(0, 10)
+  const today  = todayISO()
 
   return (
     <div className="flex flex-col gap-6">
@@ -94,7 +97,7 @@ export default function AdminEventsPage() {
                       <td className="px-4 py-3">
                         <div className="flex flex-col gap-0.5">
                           <time className="font-mono text-label text-ink-primary" dateTime={event.date}>
-                            {new Date(event.date).toLocaleDateString('es-AR', { day: 'numeric', month: 'short', year: 'numeric' })}
+                            {formatDate(event.date, i18n.language)}
                           </time>
                           <span className="font-mono text-label text-ink-secondary">{event.time}–{event.endTime}</span>
                         </div>

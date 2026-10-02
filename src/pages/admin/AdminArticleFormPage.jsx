@@ -10,6 +10,7 @@ import { getOrganizations, isStaff } from '../../store/authStore'
 import { CATEGORIES } from '../../data/articles'
 import ImageUploader from '../../components/ImageUploader'
 import ArticleLivePreview from '../../components/admin/ArticleLivePreview'
+import { todayISO } from '../../utils/dates'
 
 const COLOR_SCHEMES = [
   { value: 'blue',   bg: 'bg-primary-500',  label: 'Azul'    },
@@ -27,7 +28,7 @@ function buildEmptyForm() {
     category:     'Académico',
     organization: myOrgs[0]?.slug ?? 'ceitba',
     authors:      [''],
-    date:         new Date().toISOString().slice(0, 10),
+    date:         todayISO(),
     readingTime:  '',
     featured:     false,
     colorScheme:  'blue',

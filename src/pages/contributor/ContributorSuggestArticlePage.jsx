@@ -8,6 +8,7 @@ import {
 } from '../../store/articleStore'
 import { fetchOrganizations } from '../../api/organizations'
 import ImageUploader from '../../components/ImageUploader'
+import { todayISO } from '../../utils/dates'
 
 const CATEGORIES = ['ACADÉMICO', 'DEPORTES', 'CULTURA', 'ORGANIZACIONES']
 
@@ -24,7 +25,7 @@ const EMPTY_FORM = {
   body:         [''],
   category:     'Académico',
   organization: 'ceitba',
-  date:         new Date().toISOString().slice(0, 10),
+  date:         todayISO(),
   readingTime:  '',
   colorScheme:  'blue',
   coverImage:   '',

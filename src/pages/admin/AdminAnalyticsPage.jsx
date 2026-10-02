@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from 'react'
 import { fetchAnalyticsSummary } from '../../api/analytics'
+import { addDaysISO, todayISO } from '../../utils/dates'
 
 const RANGES = [
   { label: '7 días',  days: 7  },
@@ -54,11 +55,9 @@ export default function AdminAnalyticsPage() {
 
   const sparkData = useMemo(() => {
     const viewsMap = Object.fromEntries(summary.dailyViews.map(({ date, views }) => [date, views]))
-    const today = new Date()
+    const today = todayISO()
     return Array.from({ length: 14 }, (_, i) => {
-      const d = new Date(today)
-      d.setDate(d.getDate() - (13 - i))
-      const key = d.toISOString().slice(0, 10)
+      const key = addDaysISO(today, -(13 - i))
       return { date: key, value: viewsMap[key] ?? 0 }
     })
   }, [summary.dailyViews])

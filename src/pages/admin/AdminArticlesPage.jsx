@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { fetchArticles, deleteArticle } from '../../api/articles'
 import { fetchAnalyticsSummary } from '../../api/analytics'
 import CategoryBadge from '../../components/CategoryBadge'
+import { formatDate } from '../../utils/dates'
 
 export default function AdminArticlesPage() {
+  const { i18n } = useTranslation()
   const [articles, setArticles] = useState([])
   const [votes, setVotes]       = useState({})
   const [status, setStatus]     = useState('loading')
@@ -124,7 +127,7 @@ export default function AdminArticlesPage() {
                     </td>
                     <td className="px-4 py-3">
                       <time className="font-mono text-label text-ink-secondary" dateTime={article.date}>
-                        {new Date(article.date).toLocaleDateString('es-AR', { day: 'numeric', month: 'short', year: 'numeric' })}
+                        {formatDate(article.date, i18n.language)}
                       </time>
                     </td>
                     <td className="px-4 py-3">

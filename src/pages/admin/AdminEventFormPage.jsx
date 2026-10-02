@@ -3,6 +3,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom'
 import { fetchEventById, createEvent, updateEvent } from '../../api/events'
 import { fetchOrganizations } from '../../api/organizations'
 import { getOrganizations, isStaff } from '../../store/authStore'
+import { todayISO } from '../../utils/dates'
 
 const EVENT_CATEGORIES = ['ACADÉMICO', 'DEPORTES', 'CULTURA', 'ORGANIZACIONES']
 
@@ -10,7 +11,7 @@ function buildEmptyForm() {
   const myOrgs = getOrganizations()
   return {
     title:        '',
-    date:         new Date().toISOString().slice(0, 10),
+    date:         todayISO(),
     time:         '09:00',
     endTime:      '10:00',
     location:     '',

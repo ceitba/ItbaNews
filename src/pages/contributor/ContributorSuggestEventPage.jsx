@@ -3,12 +3,13 @@ import { useParams, useNavigate, Link } from 'react-router-dom'
 import { getCachedSession } from '../../store/authStore'
 import { getEventById, submitEventSuggestion, resubmitEventSuggestion } from '../../store/eventStore'
 import { fetchOrganizations } from '../../api/organizations'
+import { todayISO } from '../../utils/dates'
 
 const EVENT_CATEGORIES = ['ACADÉMICO', 'DEPORTES', 'CULTURA', 'ORGANIZACIONES']
 
 const EMPTY_FORM = {
   title:        '',
-  date:         new Date().toISOString().slice(0, 10),
+  date:         todayISO(),
   time:         '09:00',
   endTime:      '10:00',
   location:     '',

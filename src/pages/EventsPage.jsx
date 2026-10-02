@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import Calendar from '../components/Calendar'
 import EventCard from '../components/EventCard'
 import { fetchEvents } from '../api/events'
+import { formatDate, todayISO } from '../utils/dates'
 
 export default function EventsPage() {
   const { t, i18n } = useTranslation()
@@ -16,7 +17,7 @@ export default function EventsPage() {
       .catch(() => setStatus('error'))
   }, [])
 
-  const today = new Date().toISOString().slice(0, 10)
+  const today = todayISO()
 
   const upcomingEvents = useMemo(
     () => allEvents.filter((e) => e.date >= today),
@@ -28,10 +29,7 @@ export default function EventsPage() {
     : upcomingEvents
 
   const selectedLabel = selectedDate
-    ? new Date(selectedDate).toLocaleDateString(
-        i18n.language === 'en' ? 'en-US' : 'es-AR',
-        { weekday: 'long', month: 'long', day: 'numeric' }
-      )
+    ? formatDate(selectedDate, i18n.language, { weekday: 'long', month: 'long', day: 'numeric' })
     : null
 
   return (

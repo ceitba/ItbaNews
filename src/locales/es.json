@@ -109,5 +109,10 @@
       "invalid_state": "La sesión de inicio expiró o no es válida. Probá de nuevo.",
       "auth_failed": "No pudimos completar el inicio de sesión. Probá de nuevo."
     }
+  },
+  "calendar": {
+    "prevMonth": "Mes anterior",
+    "nextMonth": "Mes siguiente",
+    "dayWithEvents": "{{date}}, con eventos"
   }
 }

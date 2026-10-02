@@ -13,6 +13,7 @@ import {
   requestEventChanges,
 } from '../../store/eventStore'
 import { fetchOrganizations } from '../../api/organizations'
+import { todayISO } from '../../utils/dates'
 
 const ARTICLE_CATEGORIES = ['ACADÉMICO', 'DEPORTES', 'CULTURA', 'ORGANIZACIONES']
 const EVENT_CATEGORIES   = ['ACADÉMICO', 'DEPORTES', 'CULTURA', 'ORGANIZACIONES']
@@ -54,11 +55,11 @@ export default function AdminSuggestionReviewPage() {
             category:     resource.category     ?? 'Académico',
             organization: resource.organization ?? 'ceitba',
             readingTime:  resource.readingTime  ?? '',
-            date:         resource.date         ?? new Date().toISOString().slice(0, 10),
+            date:         resource.date         ?? todayISO(),
           }
         : {
             title:        resource.title        ?? '',
-            date:         resource.date         ?? new Date().toISOString().slice(0, 10),
+            date:         resource.date         ?? todayISO(),
             time:         resource.time         ?? '09:00',
             endTime:      resource.endTime      ?? '10:00',
             location:     resource.location     ?? '',
