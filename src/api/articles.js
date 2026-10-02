@@ -33,3 +33,19 @@ export async function updateArticle(id, data) {
 export async function deleteArticle(id) {
   await apiSend('DELETE', `/articles/${encodeURIComponent(id)}`)
 }
+
+// Statuses the API stores for articles (ArticleController / ArticleInput):
+// the admin form only ever writes these two.
+export const ARTICLE_STATUSES = ['published', 'draft']
+
+// Walks every page of a filtered list — for admin tables, which must not
+// silently stop at the first page.
+export async function fetchAllArticles(filters = {}, { pageSize = 100, maxPages = 50 } = {}) {
+  const all = []
+  for (let page = 1; page <= maxPages; page++) {
+    const { data, meta } = await fetchArticles({ ...filters, page, limit: pageSize })
+    all.push(...data)
+    if (data.length < pageSize || all.length >= (meta?.total ?? 0)) break
+  }
+  return all
+}

@@ -115,5 +115,43 @@
     "prevMonth": "Previous month",
     "nextMonth": "Next month",
     "dayWithEvents": "{{date}}, has events"
+  },
+  "admin": {
+    "common": {
+      "retry": "Retry",
+      "actions": "Actions",
+      "edit": "Edit",
+      "delete": "Delete",
+      "confirm": "Confirm",
+      "cancel": "Cancel"
+    },
+    "status": {
+      "published": "Published",
+      "draft": "Draft",
+      "pending_review": "Pending review",
+      "changes_requested": "Changes requested",
+      "rejected": "Rejected"
+    },
+    "articles": {
+      "title": "Articles",
+      "count_one": "{{count}} article in total",
+      "count_other": "{{count}} articles in total",
+      "new": "New article",
+      "loading": "Loading articles…",
+      "loadError": "Couldn't load the articles",
+      "featured": "Featured",
+      "emptyTitle": "No articles",
+      "emptyMessage": "Create the first article for the newsletter.",
+      "deleteError": "Couldn't delete the article. Please try again.",
+      "publishedOnlyNote": "Showing your organizations' published articles. Drafts are only visible to staff.",
+      "columns": {
+        "title": "Title",
+        "status": "Status",
+        "category": "Category",
+        "organization": "Organization",
+        "date": "Date",
+        "votes": "Votes"
+      }
+    }
   }
 }

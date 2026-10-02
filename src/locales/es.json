@@ -115,5 +115,43 @@
     "prevMonth": "Mes anterior",
     "nextMonth": "Mes siguiente",
     "dayWithEvents": "{{date}}, con eventos"
+  },
+  "admin": {
+    "common": {
+      "retry": "Reintentar",
+      "actions": "Acciones",
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "confirm": "Confirmar",
+      "cancel": "Cancelar"
+    },
+    "status": {
+      "published": "Publicado",
+      "draft": "Borrador",
+      "pending_review": "Pendiente revisión",
+      "changes_requested": "Cambios solicitados",
+      "rejected": "Rechazado"
+    },
+    "articles": {
+      "title": "Artículos",
+      "count_one": "{{count}} artículo en total",
+      "count_other": "{{count}} artículos en total",
+      "new": "Nuevo artículo",
+      "loading": "Cargando artículos…",
+      "loadError": "No se pudieron cargar los artículos",
+      "featured": "Destacado",
+      "emptyTitle": "Sin artículos",
+      "emptyMessage": "Creá el primer artículo para el newsletter.",
+      "deleteError": "No se pudo eliminar el artículo. Intentá de nuevo.",
+      "publishedOnlyNote": "Se muestran los artículos publicados de tus organizaciones. Los borradores solo los ve el staff.",
+      "columns": {
+        "title": "Título",
+        "status": "Estado",
+        "category": "Categoría",
+        "organization": "Organización",
+        "date": "Fecha",
+        "votes": "Votos"
+      }
+    }
   }
 }
