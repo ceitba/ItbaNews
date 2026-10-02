@@ -54,7 +54,8 @@
     "noUpcoming": "No hay próximos eventos.",
     "noEventsOnDay": "Nada agendado para este día.",
     "noEvents": "No hay eventos programados.",
-    "timeRange": "{{start}}–{{end}}"
+    "timeRange": "{{start}}–{{end}}",
+    "error": "No pudimos cargar los eventos. Revisá tu conexión e intentá de nuevo."
   },
   "orgs": {
     "pageTitle": "Organizaciones",
@@ -293,6 +294,29 @@
         "days30": "30 días",
         "allTime": "Todo"
       }
+    },
+    "roles": {
+      "staff": "Staff",
+      "user": "Miembro"
+    },
+    "nav": {
+      "label": "Navegación del panel",
+      "content": "Contenido",
+      "articles": "Artículos",
+      "events": "Eventos",
+      "suggestions": "Sugerencias",
+      "organization": "Organización",
+      "orgProfile": "Perfil · {{org}}",
+      "media": "Medios",
+      "analytics": "Analíticas",
+      "superadmin": "Superadmin",
+      "allOrganizations": "Todas las organizaciones",
+      "backToSite": "Volver al sitio público",
+      "panel": "Panel Admin",
+      "viewSite": "Ver sitio",
+      "new": "Nuevo",
+      "edit": "Editar",
+      "review": "Revisar"
     }
   },
   "imageUploader": {

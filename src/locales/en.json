@@ -54,7 +54,8 @@
     "noUpcoming": "No upcoming events.",
     "noEventsOnDay": "Nothing scheduled for this day.",
     "noEvents": "No events scheduled.",
-    "timeRange": "{{start}}–{{end}}"
+    "timeRange": "{{start}}–{{end}}",
+    "error": "We couldn't load the events. Check your connection and try again."
   },
   "orgs": {
     "pageTitle": "Organizations",
@@ -293,6 +294,29 @@
         "days30": "30 days",
         "allTime": "All time"
       }
+    },
+    "roles": {
+      "staff": "Staff",
+      "user": "Member"
+    },
+    "nav": {
+      "label": "Admin navigation",
+      "content": "Content",
+      "articles": "Articles",
+      "events": "Events",
+      "suggestions": "Suggestions",
+      "organization": "Organization",
+      "orgProfile": "Profile · {{org}}",
+      "media": "Media",
+      "analytics": "Analytics",
+      "superadmin": "Superadmin",
+      "allOrganizations": "All organizations",
+      "backToSite": "Back to the public site",
+      "panel": "Admin Panel",
+      "viewSite": "View site",
+      "new": "New",
+      "edit": "Edit",
+      "review": "Review"
     }
   },
   "imageUploader": {

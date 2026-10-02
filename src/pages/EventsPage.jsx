@@ -76,7 +76,7 @@ export default function EventsPage() {
 
         {status === 'error' && (
           <p role="alert" className="font-body text-body text-ink-secondary">
-            {t('articles.error.message')}
+            {t('events.error')}
           </p>
         )}
 
