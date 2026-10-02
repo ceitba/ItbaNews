@@ -264,6 +264,35 @@
         "location": "Location is required.",
         "endBeforeStart": "End time must be after the start time."
       }
+    },
+    "analytics": {
+      "title": "Analytics",
+      "subtitle": "Content performance for the media team.",
+      "loadError": "Couldn't load analytics. Please try again later.",
+      "noDataTitle": "No data yet.",
+      "noDataMessage": "Data is recorded when readers visit articles and vote.",
+      "articleViews": "Article views",
+      "uniqueVisitors": "Unique visitors",
+      "totalVotes": "Total votes",
+      "dailyViews": "Daily views — last 14 days",
+      "topArticles": "Most viewed articles",
+      "noViews": "No visits recorded yet.",
+      "categoryViews": "Views by category",
+      "noCategoryData": "No category data yet.",
+      "votesByArticle": "Votes by article",
+      "votesPrivate": "Counts are private and never shown to the public.",
+      "columns": {
+        "article": "Article",
+        "helpful": "Helpful",
+        "notHelpful": "Not helpful",
+        "ratio": "Ratio",
+        "views": "Views"
+      },
+      "ranges": {
+        "days7": "7 days",
+        "days30": "30 days",
+        "allTime": "All time"
+      }
     }
   },
   "imageUploader": {

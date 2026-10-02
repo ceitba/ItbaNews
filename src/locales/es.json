@@ -264,6 +264,35 @@
         "location": "El lugar es obligatorio.",
         "endBeforeStart": "La hora de fin debe ser posterior al inicio."
       }
+    },
+    "analytics": {
+      "title": "Analíticas",
+      "subtitle": "Rendimiento del contenido para el equipo de medios.",
+      "loadError": "No se pudieron cargar las analíticas. Intentá de nuevo más tarde.",
+      "noDataTitle": "Sin datos aún.",
+      "noDataMessage": "Los datos se registran cuando los lectores visitan artículos y votan.",
+      "articleViews": "Vistas de artículos",
+      "uniqueVisitors": "Visitantes únicos",
+      "totalVotes": "Votos totales",
+      "dailyViews": "Vistas diarias — últimos 14 días",
+      "topArticles": "Artículos más vistos",
+      "noViews": "Sin visitas registradas aún.",
+      "categoryViews": "Vistas por categoría",
+      "noCategoryData": "Sin datos de categoría aún.",
+      "votesByArticle": "Votos por artículo",
+      "votesPrivate": "Los conteos son privados y no se muestran al público.",
+      "columns": {
+        "article": "Artículo",
+        "helpful": "Útil",
+        "notHelpful": "No útil",
+        "ratio": "Ratio",
+        "views": "Vistas"
+      },
+      "ranges": {
+        "days7": "7 días",
+        "days30": "30 días",
+        "allTime": "Todo"
+      }
     }
   },
   "imageUploader": {
