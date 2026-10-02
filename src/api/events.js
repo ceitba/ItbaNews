@@ -40,3 +40,16 @@ export async function updateEvent(id, data) {
 export async function deleteEvent(id) {
   await apiSend('DELETE', `/news/events/${encodeURIComponent(id)}`)
 }
+
+// Walks every page of a filtered list (the API caps each page at `limit`
+// and sorts by eventDate ascending), so callers never silently drop the
+// later events.
+export async function fetchAllEvents(filters = {}, { pageSize = 100, maxPages = 50 } = {}) {
+  const all = []
+  for (let page = 1; page <= maxPages; page++) {
+    const { data, meta } = await fetchEvents({ ...filters, page, limit: pageSize })
+    all.push(...data)
+    if (data.length < pageSize || all.length >= (meta?.total ?? 0)) break
+  }
+  return all
+}

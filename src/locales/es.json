@@ -48,7 +48,7 @@
     "pageTitle": "Eventos",
     "pageSubtitle": "Lo que pasa en el ITBA este semestre.",
     "upcoming": "Próximos Eventos",
-    "allEvents": "Todos los Eventos",
+    "allEvents": "Este mes y próximos",
     "eventsOn": "Eventos el {{date}}",
     "clearSelection": "Limpiar selección — ver todos los próximos",
     "noUpcoming": "No hay próximos eventos.",
@@ -151,6 +151,24 @@
         "organization": "Organización",
         "date": "Fecha",
         "votes": "Votos"
+      }
+    },
+    "events": {
+      "title": "Eventos",
+      "count_one": "{{count}} evento en total",
+      "count_other": "{{count}} eventos en total",
+      "new": "Nuevo evento",
+      "loading": "Cargando eventos…",
+      "loadError": "No se pudieron cargar los eventos",
+      "emptyTitle": "Sin eventos",
+      "emptyMessage": "Creá el primer evento para el calendario.",
+      "deleteError": "No se pudo eliminar el evento. Intentá de nuevo.",
+      "columns": {
+        "title": "Título",
+        "dateTime": "Fecha y hora",
+        "category": "Categoría",
+        "location": "Lugar",
+        "organization": "Organización"
       }
     }
   }

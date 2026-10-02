@@ -21,7 +21,7 @@ function formatMonth(year, month, lang) {
   })
 }
 
-export default function Calendar({ events, selectedDate, onSelectDate }) {
+export default function Calendar({ events, selectedDate, onSelectDate, onMonthChange }) {
   const { t, i18n } = useTranslation()
   const today = new Date()
   const [viewYear, setViewYear] = useState(today.getFullYear())
@@ -39,14 +39,20 @@ export default function Calendar({ events, selectedDate, onSelectDate }) {
   )
   const weekdays = weekdayNames(i18n.language)
 
+  function goTo(year, month) {
+    setViewYear(year)
+    setViewMonth(month)
+    onMonthChange?.(year, month)
+  }
+
   function prevMonth() {
-    if (viewMonth === 0) { setViewMonth(11); setViewYear((y) => y - 1) }
-    else setViewMonth((m) => m - 1)
+    if (viewMonth === 0) goTo(viewYear - 1, 11)
+    else goTo(viewYear, viewMonth - 1)
   }
 
   function nextMonth() {
-    if (viewMonth === 11) { setViewMonth(0); setViewYear((y) => y + 1) }
-    else setViewMonth((m) => m + 1)
+    if (viewMonth === 11) goTo(viewYear + 1, 0)
+    else goTo(viewYear, viewMonth + 1)
   }
 
   const todayStr = todayISO()

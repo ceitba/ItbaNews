@@ -37,7 +37,7 @@ export default function OrgPortalPage() {
     Promise.all([
       fetchOrganizationBySlug(slug),
       fetchArticles({ organization: slug }),
-      fetchEvents({ organization: slug }),
+      fetchEvents({ organization: slug, from: todayISO(), limit: 4 }),
     ])
       .then(([orgData, articlesRes, eventsRes]) => {
         if (cancelled) return

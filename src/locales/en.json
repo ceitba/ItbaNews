@@ -48,7 +48,7 @@
     "pageTitle": "Events",
     "pageSubtitle": "What's happening at ITBA this semester.",
     "upcoming": "Upcoming Events",
-    "allEvents": "All Events",
+    "allEvents": "This month and upcoming",
     "eventsOn": "Events on {{date}}",
     "clearSelection": "Clear selection — show all upcoming",
     "noUpcoming": "No upcoming events.",
@@ -151,6 +151,24 @@
         "organization": "Organization",
         "date": "Date",
         "votes": "Votes"
+      }
+    },
+    "events": {
+      "title": "Events",
+      "count_one": "{{count}} event in total",
+      "count_other": "{{count}} events in total",
+      "new": "New event",
+      "loading": "Loading events…",
+      "loadError": "Couldn't load the events",
+      "emptyTitle": "No events",
+      "emptyMessage": "Create the first event for the calendar.",
+      "deleteError": "Couldn't delete the event. Please try again.",
+      "columns": {
+        "title": "Title",
+        "dateTime": "Date & time",
+        "category": "Category",
+        "location": "Location",
+        "organization": "Organization"
       }
     }
   }
