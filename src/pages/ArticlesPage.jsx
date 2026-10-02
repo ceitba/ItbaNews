@@ -8,6 +8,7 @@ import { fetchArticles } from '../api/articles'
 import { CATEGORIES } from '../data/articles'
 import { useAuthSession } from '../hooks/useAuthSession'
 import { canAccessAdmin } from '../store/authStore'
+import { CONTRIBUTIONS_ENABLED } from '../config/features'
 
 function useFetchArticles(category) {
   const [state, setState] = useState({ status: 'loading', data: [] })
@@ -69,7 +70,7 @@ export default function ArticlesPage() {
           )}
         </div>
 
-        <ContributeBanner />
+        {CONTRIBUTIONS_ENABLED && <ContributeBanner />}
       </div>
     </div>
   )

@@ -2,8 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { Outlet, NavLink, Link, useNavigate, useLocation } from 'react-router-dom'
 import { signOut, getOrganizations, isStaff as isStaffProfile } from '../store/authStore'
 import { useAuthSession } from '../hooks/useAuthSession'
-import { getPendingArticleSuggestionsCount } from '../store/articleStore'
-import { getPendingEventSuggestionsCount } from '../store/eventStore'
+import { CONTRIBUTIONS_ENABLED } from '../config/features'
 
 function buildNav(profile) {
   const orgs = getOrganizations(profile)
@@ -16,7 +15,7 @@ function buildNav(profile) {
     items: [
       { to: '/admin/articles', label: 'Artículos', icon: <IconDoc /> },
       { to: '/admin/events',   label: 'Eventos',   icon: <IconCal /> },
-      ...(isStaff
+      ...(isStaff && CONTRIBUTIONS_ENABLED
         ? [{ to: '/admin/suggestions', label: 'Sugerencias', icon: <IconInbox /> }]
         : []),
     ],
@@ -76,7 +75,17 @@ export default function AdminLayout() {
     navigate('/admin/login', { replace: true })
   }
 
-  const pendingSuggestions = getPendingArticleSuggestionsCount() + getPendingEventSuggestionsCount()
+  // Mock-backed count (see config/features.js); only loaded when enabled.
+  const [pendingSuggestions, setPendingSuggestions] = useState(0)
+  useEffect(() => {
+    if (!CONTRIBUTIONS_ENABLED) return
+    let active = true
+    Promise.all([import('../store/articleStore'), import('../store/eventStore')])
+      .then(([a, e]) => {
+        if (active) setPendingSuggestions(a.getPendingArticleSuggestionsCount() + e.getPendingEventSuggestionsCount())
+      })
+    return () => { active = false }
+  }, [])
 
   const counts = {
     '/admin/articles':    null,

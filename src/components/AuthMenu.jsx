@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { canAccessAdmin, signOut, startGoogleSignIn } from '../store/authStore'
 import { useAuthSession } from '../hooks/useAuthSession'
+import { CONTRIBUTIONS_ENABLED } from '../config/features'
 
 // Same shape as CeitbaPage's AuthMenu — sign-in button when anonymous,
 // avatar dropdown when signed in. The previous "Contribuir" CTA moves into
@@ -99,7 +100,7 @@ export default function AuthMenu({ mobile = false }) {
             >
               {t('auth.adminPanel')}
             </Link>
-          ) : (
+          ) : CONTRIBUTIONS_ENABLED && (
             <button
               type="button"
               role="menuitem"
